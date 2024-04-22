@@ -13,6 +13,3 @@ type Kv struct {
 	Value string
 }
 
-const (
-	GormCachePrefix = "gormcache"
-)

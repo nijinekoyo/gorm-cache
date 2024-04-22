@@ -1,3 +1,11 @@
+/*
+ * @Author: nijineko
+ * @Date: 2024-04-22 10:46:20
+ * @LastEditTime: 2024-04-22 10:54:58
+ * @LastEditors: nijineko
+ * @Description:
+ * @FilePath: \gorm-cache\util\key.go
+ */
 package util
 
 import (
@@ -19,15 +27,15 @@ func GenInstanceId() string {
 	return string(str)
 }
 
-func GenPrimaryCacheKey(instanceId string, tableName string, primaryKey string) string {
-	return fmt.Sprintf("%s:%s:p:%s:%s", GormCachePrefix, instanceId, tableName, primaryKey)
+func GenPrimaryCacheKey(KeyPrefix string, instanceId string, tableName string, primaryKey string) string {
+	return fmt.Sprintf("%s:%s:p:%s:%s", KeyPrefix, instanceId, tableName, primaryKey)
 }
 
-func GenPrimaryCachePrefix(instanceId string, tableName string) string {
-	return GormCachePrefix + ":" + instanceId + ":p:" + tableName
+func GenPrimaryCachePrefix(KeyPrefix string, instanceId string, tableName string) string {
+	return KeyPrefix + ":" + instanceId + ":p:" + tableName
 }
 
-func GenSearchCacheKey(instanceId string, tableName string, sql string, vars ...interface{}) string {
+func GenSearchCacheKey(KeyPrefix string, instanceId string, tableName string, sql string, vars ...interface{}) string {
 	buf := strings.Builder{}
 	buf.WriteString(sql)
 	for _, v := range vars {
@@ -38,9 +46,9 @@ func GenSearchCacheKey(instanceId string, tableName string, sql string, vars ...
 			buf.WriteString(fmt.Sprintf(":%v", v))
 		}
 	}
-	return fmt.Sprintf("%s:%s:s:%s:%s", GormCachePrefix, instanceId, tableName, buf.String())
+	return fmt.Sprintf("%s:%s:s:%s:%s", KeyPrefix, instanceId, tableName, buf.String())
 }
 
-func GenSearchCachePrefix(instanceId string, tableName string) string {
-	return GormCachePrefix + ":" + instanceId + ":s:" + tableName
+func GenSearchCachePrefix(KeyPrefix string, instanceId string, tableName string) string {
+	return KeyPrefix + ":" + instanceId + ":s:" + tableName
 }

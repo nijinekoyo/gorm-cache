@@ -10,6 +10,9 @@ type CacheConfig struct {
 	// RedisConfig if storage is redis, then this config needs to be setup
 	RedisConfig *RedisConfig
 
+	// cache key prefix
+	KeyPrefix string
+
 	// Tables only cache data within given data tables (cache all if empty)
 	Tables []string
 
