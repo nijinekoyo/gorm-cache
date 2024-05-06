@@ -72,7 +72,7 @@ func (c *Gorm2Cache) Init() error {
 
 	// if key prefix is empty, set default value
 	if c.Config.KeyPrefix == "" {
-		c.Config.KeyPrefix = "gormcache"
+		c.Config.KeyPrefix = "gormcache:"
 	}
 
 	prefix := c.Config.KeyPrefix + c.InstanceId
