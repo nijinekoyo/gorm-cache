@@ -69,7 +69,7 @@ func (r *RedisLayer) initScripts() error {
 }
 
 func (r *RedisLayer) CleanCache(ctx context.Context) error {
-	result := r.client.EvalSha(ctx, r.cleanCacheSha, []string{"0"}, r.keyPrefix+":*")
+	result := r.client.EvalSha(ctx, r.cleanCacheSha, []string{"0"}, r.keyPrefix+"*")
 	if result.Err() != nil {
 		r.logger.CtxError(ctx, "[CleanCache] clean cache error: %v", result.Err())
 		return result.Err()
@@ -119,7 +119,7 @@ func (r *RedisLayer) BatchGetValues(ctx context.Context, keys []string) ([]strin
 }
 
 func (r *RedisLayer) DeleteKeysWithPrefix(ctx context.Context, keyPrefix string) error {
-	result := r.client.EvalSha(ctx, r.cleanCacheSha, []string{"0"}, keyPrefix+":*")
+	result := r.client.EvalSha(ctx, r.cleanCacheSha, []string{"0"}, keyPrefix+"*")
 	return result.Err()
 }
 

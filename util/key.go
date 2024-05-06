@@ -28,11 +28,11 @@ func GenInstanceId() string {
 }
 
 func GenPrimaryCacheKey(KeyPrefix string, instanceId string, tableName string, primaryKey string) string {
-	return fmt.Sprintf("%s:%s:p:%s:%s", KeyPrefix, instanceId, tableName, primaryKey)
+	return fmt.Sprintf("%s%s:p:%s:%s", KeyPrefix, instanceId, tableName, primaryKey)
 }
 
 func GenPrimaryCachePrefix(KeyPrefix string, instanceId string, tableName string) string {
-	return KeyPrefix + ":" + instanceId + ":p:" + tableName
+	return KeyPrefix + instanceId + ":p:" + tableName
 }
 
 func GenSearchCacheKey(KeyPrefix string, instanceId string, tableName string, sql string, vars ...interface{}) string {
@@ -46,9 +46,9 @@ func GenSearchCacheKey(KeyPrefix string, instanceId string, tableName string, sq
 			buf.WriteString(fmt.Sprintf(":%v", v))
 		}
 	}
-	return fmt.Sprintf("%s:%s:s:%s:%s", KeyPrefix, instanceId, tableName, buf.String())
+	return fmt.Sprintf("%s%s:s:%s:%s", KeyPrefix, instanceId, tableName, buf.String())
 }
 
 func GenSearchCachePrefix(KeyPrefix string, instanceId string, tableName string) string {
-	return KeyPrefix + ":" + instanceId + ":s:" + tableName
+	return KeyPrefix + instanceId + ":s:" + tableName
 }
