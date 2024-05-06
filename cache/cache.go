@@ -75,7 +75,7 @@ func (c *Gorm2Cache) Init() error {
 		c.Config.KeyPrefix = "gormcache"
 	}
 
-	prefix := c.Config.KeyPrefix + ":" + c.InstanceId
+	prefix := c.Config.KeyPrefix + c.InstanceId
 
 	if c.Config.CacheStorage == config.CacheStorageRedis {
 		c.cache = &data_layer.RedisLayer{}
