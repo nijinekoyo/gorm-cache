@@ -7,9 +7,9 @@ import (
 
 	"gorm.io/gorm/logger"
 
-	"github.com/Pacific73/gorm-cache/cache"
+	"github.com/nijinekoyo/gorm-cache/cache"
 
-	"github.com/Pacific73/gorm-cache/config"
+	"github.com/nijinekoyo/gorm-cache/config"
 	"github.com/go-redis/redis/v8"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

@@ -1,4 +1,4 @@
-module github.com/Pacific73/gorm-cache
+module github.com/nijinekoyo/gorm-cache
 
 go 1.15
 
